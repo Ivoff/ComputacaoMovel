@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/sincronizar"
+        android:title="Sincronizar">
+    </item>
+    <item
+        android:id="@+id/sobre"
+        android:title="Sobre">
+    </item>
+    <item
+        android:id="@+id/paginacao"
+        android:title="Paginação">
+    </item>
+</menu>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ComputacaoMovel</string>
+    <string-array name="spinner_array">
+        <item>Conferências</item>
+        <item>Periódicos</item>
+        <item>Correlação com Outras Áreas</item>
+    </string-array>
 </resources>
