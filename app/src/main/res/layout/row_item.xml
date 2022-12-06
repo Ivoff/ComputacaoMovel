@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/high_light"
+    android:orientation="vertical"
+    android:paddingStart="30dp"
+    android:paddingEnd="30dp"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp"
+>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="21CW - IEEE Conference on Norbert Wiener in the 21st Century"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:id="@+id/item_header"
+    />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+    >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginEnd="20dp"
+            android:text="A1"
+            android:id="@+id/subitem_text_1"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginEnd="20dp"
+            android:id="@+id/subitem_text_2"
+            android:text="A2"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:id="@+id/subitem_text_3"
+            android:text="A2"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

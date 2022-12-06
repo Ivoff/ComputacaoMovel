@@ -5,4 +5,25 @@
         <item>Periódicos</item>
         <item>Correlação com Outras Áreas</item>
     </string-array>
+    <string-array name="spinner_conferencias_columns_array">
+        <item>Sigla</item>
+        <item>Conferência</item>
+        <item>Extrato CAPES</item>
+    </string-array>
+    <string-array name="spinner_periodicos_columns_array">
+        <item>ISSN</item>
+        <item>Periódico</item>
+        <item>Extrato CAPES</item>
+    </string-array>
+    <string-array name="spinner_outras_areas_columns_array">
+        <item>ISSN</item>
+        <item>Periódico</item>
+        <item>Extrato CAPES Computação</item>
+        <item>Extrato CAPES Outra Área</item>
+        <item>Outra Área</item>
+    </string-array>
+    <string-array name="spinner_order_array">
+        <item>Crescente</item>
+        <item>Decrescente</item>
+    </string-array>
 </resources>

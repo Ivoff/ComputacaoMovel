@@ -24,6 +24,7 @@ public final class DbSchemaContract {
         );
         public static final String SQL_DELETE_STMT = "DROP TABLE IF EXISTS " + Conferencia.TABLE_NAME;
         public static final String SQL_INSERT_STMT = "INSERT INTO "+Conferencia.TABLE_NAME+" (" + Conferencia.COLUMN_NAME_SIGLA +", " + Conferencia.COLUMN_NAME_CONFERENCIA + ", " + Conferencia.COLUMN_NAME_EXTRATO_CAPES + ") VALUES ('%s', '%s', '%s');";
+        public static final String SQL_SELECT_STMT = "SELECT * FROM "+Conferencia.TABLE_NAME+" WHERE "+Conferencia.TABLE_NAME+".%s = '%s';";
     }
     public static final class Periodicos implements BaseColumns {
         public static final String TABLE_NAME = "periodicos";
@@ -45,6 +46,7 @@ public final class DbSchemaContract {
         );
         public static final String SQL_DELETE_STMT = "DROP TABLE IF EXISTS " + Periodicos.TABLE_NAME;
         public static final String SQL_INSERT_STMT = "INSERT INTO "+Periodicos.TABLE_NAME+" (" + Periodicos.COLUMN_NAME_ISSN +", " + Periodicos.COLUMN_NAME_PERIODICOS + ", " + Periodicos.COLUMN_NAME_EXTRATO_CAPES + ") VALUES ('%s', '%s', '%s');";
+        public static final String SQL_SELECT_STMT = "SELECT * FROM "+Periodicos.TABLE_NAME+" WHERE "+Periodicos.TABLE_NAME+".%s = '%s';";
     }
 
     public static final class OutrasAreas implements BaseColumns {
@@ -73,5 +75,6 @@ public final class DbSchemaContract {
         );
         public static final String SQL_DELETE_STMT = "DROP TABLE IF EXISTS " + OutrasAreas.TABLE_NAME;
         public static final String SQL_INSERT_STMT = "INSERT INTO "+OutrasAreas.TABLE_NAME+" ("+OutrasAreas.COLUMN_NAME_ISSN+", "+OutrasAreas.COLUMN_NAME_PERIODICOS+", "+OutrasAreas.COLUMN_NAME_EXTRATO_CAPES_COMPUTACAO+", "+OutrasAreas.COLUMN_NAME_EXTRATO_CAPES_OUTRA_AREA+", "+OutrasAreas.COLUMN_NAME_OUTRA_AREA+") VALUES ('%s', '%s', '%s', '%s', '%s');";
+        public static final String SQL_SELECT_STMT = "SELECT * FROM "+OutrasAreas.TABLE_NAME+" WHERE "+OutrasAreas.TABLE_NAME+".%s = '%s';";
     }
 }

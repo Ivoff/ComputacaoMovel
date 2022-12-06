@@ -15,13 +15,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Iterator;
 
-public class QualisRequest extends AsyncTask<String, Void, Void> {
+public class QualisRequest extends AsyncTask<String, Void, Object> {
 
     SQLiteDatabase database;
+    OnTaskCompleted listener;
 
-    QualisRequest(SQLiteDatabase db){
+    QualisRequest(SQLiteDatabase db, OnTaskCompleted parent){
         super();
         database = db;
+        listener = parent;
     }
 
     private String getJson(String string) {
@@ -87,5 +89,11 @@ public class QualisRequest extends AsyncTask<String, Void, Void> {
         }
 
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(Object o) {
+        super.onPostExecute(o);
+        listener.onTaskCompleted();
     }
 }
