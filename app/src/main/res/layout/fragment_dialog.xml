@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
+    android:minWidth="350dp"
+    android:orientation="vertical"
+>
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detalhes"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <TextView
+        android:id="@+id/detail_text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sigla: 21CW"
+        android:textColor="@color/black"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_title"
+        app:layout_constraintStart_toStartOf="parent"
+    />
+
+    <TextView
+        android:id="@+id/detail_text_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Conferência: 21CW - IEEE Conference on Norbert Wiener in the 21st Century"
+        android:textColor="@color/black"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/detail_text_1"
+        app:layout_constraintStart_toStartOf="parent"
+
+    />
+
+    <TextView
+        android:id="@+id/detail_text_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Extrato CAPES"
+        android:textColor="@color/black"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/detail_text_2"
+        app:layout_constraintStart_toStartOf="parent"
+    />
+
+    <TextView
+        android:id="@+id/detail_text_3_sub_text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Computação: B3"
+        android:textColor="@color/black"
+        android:textSize="11sp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/detail_text_3"
+        app:layout_constraintStart_toStartOf="parent"
+    />
+
+    <TextView
+        android:id="@+id/detail_text_3_sub_text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BIODIVERSIDADE: A2"
+        android:textColor="@color/black"
+        android:textSize="11sp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/detail_text_3_sub_text_1"
+        app:layout_constraintStart_toStartOf="parent"
+
+    />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,6 +9,7 @@
     tools:context=".MainActivity"
     android:id="@+id/root_view"
     android:animateLayoutChanges="true"
+    android:orientation="vertical"
 >
 
     <androidx.appcompat.widget.Toolbar
@@ -20,21 +21,32 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        tools:layout_editor_absoluteX="0dp">
-        <EditText
-            android:id="@+id/search_bar"
+    >
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_search"
-            android:drawableStart="@drawable/bg_search_icon"
-            android:inputType="textShortMessage"
-            android:imeOptions="actionSearch"
-        />
+            android:layout_height="match_parent"
+        >
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_search"
+                android:drawableStart="@drawable/bg_search_icon"
+                android:drawableEnd="@drawable/clear_search_placeholder"
+                android:inputType="textShortMessage"
+                android:imeOptions="actionSearch"
+            />
+<!--            <ImageView-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:src="@drawable/clear_search_bar"-->
+<!--            />-->
+        </FrameLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/filtros_btn"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -45,24 +57,22 @@
         android:textSize="14sp"
         android:textStyle="bold"
         android:background="@color/high_light"
-        android:drawableStart="@drawable/custom_arrow_down"
         android:clickable="true"
         android:focusable="true"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar"
-    />
+        app:drawableStartCompat="@drawable/custom_arrow_down"
+     />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/filtros_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:translationY="-300dp"
         android:translationZ="-1dp"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/filtros_btn"
     >
         <Spinner
@@ -92,8 +102,6 @@
                 android:layout_weight="0.35"
                 android:overlapAnchor="false"
                 android:drawSelectorOnTop="false"
-
-                app:layout_constraintTop_toTopOf="parent"
             />
             <Spinner
                 android:id="@+id/spinner_order"
@@ -102,10 +110,9 @@
                 android:background="@drawable/btn_filter"
                 android:layout_marginTop="10dp"
                 android:layout_weight="0.65"
+                android:textSize="5sp"
                 android:overlapAnchor="false"
                 android:drawSelectorOnTop="false"
-
-                app:layout_constraintTop_toTopOf="parent"
             />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -113,33 +120,50 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/list_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filtros_btn"
+        android:background="@color/mid_light"
     >
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/mid_light"
-            />
+            android:visibility="gone"
+        />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="75dp"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:focusableInTouchMode="false"
-            android:indeterminateTint="@color/mid_light"
-        />
+            android:orientation="vertical"
+            android:layout_marginTop="210dp"
+        >
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:focusableInTouchMode="false"
+                android:indeterminateTint="@color/dark"
+                android:layout_gravity="center"
+                >
+            </ProgressBar>
+
+            <TextView
+                android:id="@+id/progress_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Carregando"
+                android:textAlignment="center"
+                android:textColor="@color/dark"
+                android:textSize="15sp"
+                android:textStyle="bold"
+            />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -15,10 +15,16 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Iterator;
 
-public class QualisRequest extends AsyncTask<String, Void, Object> {
+public class QualisRequest extends AsyncTask<String, Integer, Object> {
 
     SQLiteDatabase database;
     OnTaskCompleted listener;
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        super.onProgressUpdate(values);
+        listener.onProgressUpdate(values[0]);
+    }
 
     QualisRequest(SQLiteDatabase db, OnTaskCompleted parent){
         super();
@@ -50,8 +56,16 @@ public class QualisRequest extends AsyncTask<String, Void, Object> {
     @Override
     protected Void doInBackground(String... strings) {
         try {
-            JSONObject conferencias = new JSONObject(getJson(strings[0]).toString());
-            JSONArray conferencias_data = conferencias.getJSONArray("data");
+            JSONArray conferencias_data = (new JSONObject(getJson(strings[0]).toString())).getJSONArray("data");
+            JSONArray periodicos_data = (new JSONObject(getJson(strings[1]).toString())).getJSONArray("data");
+            JSONArray outrasAreas_data = (new JSONObject(getJson(strings[2]).toString())).getJSONArray("data");
+
+            int total = conferencias_data.length() + periodicos_data.length() + outrasAreas_data.length();
+
+//            database.execSQL(String.format("INSERT INTO %s (%s) VALUES (%d);", DbSchemaContract.Meta.TABLE_NAME, DbSchemaContract.Meta.COLUMN_NAME_TOTAL_JSON_ROWS, total));
+
+            database.beginTransaction();
+
             for(int i = 0; i < conferencias_data.length(); i += 1) {
                 JSONArray currentArray = conferencias_data.getJSONArray(i);
                 String sanitizedColumn0 = currentArray.get(0).toString().replaceAll("'", "''");
@@ -59,10 +73,9 @@ public class QualisRequest extends AsyncTask<String, Void, Object> {
                 String sanitizedColumn2 = currentArray.get(2).toString().replaceAll("'", "''");
                 String insertStmt = String.format(DbSchemaContract.Conferencia.SQL_INSERT_STMT, sanitizedColumn0, sanitizedColumn1, sanitizedColumn2);
                 database.execSQL(insertStmt);
+                publishProgress((int)((100*i)/total));
             }
 
-            JSONObject periodicos = new JSONObject(getJson(strings[1]).toString());
-            JSONArray periodicos_data = periodicos.getJSONArray("data");
             for(int i = 0; i < periodicos_data.length(); i += 1) {
                 JSONArray currentArray = periodicos_data.getJSONArray(i);
                 String sanitizedColumn0 = currentArray.get(0).toString().replaceAll("'", "''");
@@ -70,10 +83,9 @@ public class QualisRequest extends AsyncTask<String, Void, Object> {
                 String sanitizedColumn2 = currentArray.get(2).toString().replaceAll("'", "''");
                 String insertStmt = String.format(DbSchemaContract.Periodicos.SQL_INSERT_STMT, sanitizedColumn0, sanitizedColumn1, sanitizedColumn2);
                 database.execSQL(insertStmt);
+                publishProgress((int)((100*(i+conferencias_data.length()))/total));
             }
 
-            JSONObject outrasAreas = new JSONObject(getJson(strings[2]).toString());
-            JSONArray outrasAreas_data = outrasAreas.getJSONArray("data");
             for(int i = 0; i < outrasAreas_data.length(); i += 1) {
                 JSONArray currentArray = outrasAreas_data.getJSONArray(i);
                 String sanitizedColumn0 = currentArray.get(0).toString().replaceAll("'", "''");
@@ -83,7 +95,10 @@ public class QualisRequest extends AsyncTask<String, Void, Object> {
                 String sanitizedColumn4 = currentArray.get(4).toString().replaceAll("'", "''");
                 String insertStmt = String.format(DbSchemaContract.OutrasAreas.SQL_INSERT_STMT, sanitizedColumn0, sanitizedColumn1, sanitizedColumn2, sanitizedColumn3, sanitizedColumn4);
                 database.execSQL(insertStmt);
+                publishProgress((int)((100*(i+conferencias_data.length()+periodicos_data.length()))/total));
             }
+            database.setTransactionSuccessful();
+            database.endTransaction();
         } catch (Exception ex) {
             Log.d(QualisRequest.class.getSimpleName(), Log.getStackTraceString(ex));
         }

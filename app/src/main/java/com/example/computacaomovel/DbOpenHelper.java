@@ -15,6 +15,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DbSchemaContract.Conferencia.SQL_CREATE_STMT);
         sqLiteDatabase.execSQL(DbSchemaContract.Periodicos.SQL_CREATE_STMT);
         sqLiteDatabase.execSQL(DbSchemaContract.OutrasAreas.SQL_CREATE_STMT);
+//        sqLiteDatabase.execSQL(DbSchemaContract.Meta.SQL_CREATE_STMT);
     }
 
     @Override
@@ -22,6 +23,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(DbSchemaContract.Conferencia.SQL_DELETE_STMT);
         sqLiteDatabase.execSQL(DbSchemaContract.Periodicos.SQL_DELETE_STMT);
         sqLiteDatabase.execSQL(DbSchemaContract.OutrasAreas.SQL_DELETE_STMT);
+//        sqLiteDatabase.execSQL(DbSchemaContract.Meta.SQL_DELETE_STMT);
         onCreate(sqLiteDatabase);
     }
 }

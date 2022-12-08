@@ -8,8 +8,4 @@
         android:id="@+id/sobre"
         android:title="Sobre">
     </item>
-    <item
-        android:id="@+id/paginacao"
-        android:title="Paginação">
-    </item>
 </menu>

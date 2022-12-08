@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">ComputacaoMovel</string>
+    <string name="sobre_text_1"><b>Importante:</b> Esta página é uma ferramenta que busca faciliar o acesso a informações sobre qualis de períodicos e conferências da área da computação. Toda informação existente nesta página foi retirada do site da CAPES. Não reflete, sob nenhuma hipótese, a opinião de técnicos e professores do Instituto de Computação da UFMT.</string>
+    <string name="sobre_text_2"><b>Importante:</b> Para a geração da lista de periódicos e da aba correlação foi utilizado o Evento de Classificação: CLASSIFICAÇÕES DE PERIÓDICOS QUADRIÊNIO 2013–2016 do Site https://sucupira.capes.gov.br.</string>
+    <string name="sobre_text_3"><b>Importante:</b> Data da última verificação no site https://sucupira.capes.gov.br: 30/09/2019</string>
+    <string name="sobre_text_4"><b>Importante:</b> Data da última atualização da aba Conferências: Junho/2017.</string>
     <string-array name="spinner_array">
         <item>Conferências</item>
         <item>Periódicos</item>
@@ -26,4 +30,6 @@
         <item>Crescente</item>
         <item>Decrescente</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
