@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
     private ProgressBar progressBar;
     private LinearLayoutCompat listContainer;
     private TextView progressText;
+    private TextView notFoundText;
     private String searchText = "";
 
     @Override
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         listContainer = (LinearLayoutCompat) findViewById(R.id.list_container);
         progressText = (TextView) findViewById(R.id.progress_text);
+        notFoundText = (TextView) findViewById(R.id.not_found_text);
 
         dbWrite = new DbOpenHelper(this).getWritableDatabase();
         dbRead = new DbOpenHelper(this).getReadableDatabase();
@@ -216,13 +218,13 @@ public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
             listAdapter.setOnItemClickListener(new ItemsAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(View itemView, int position) {
-
                     showDialog(itemView);
                 }
             });
             list.setAdapter(listAdapter);
             list.setLayoutManager(new LinearLayoutManager(this));
             progressBar.setVisibility(View.GONE);
+            progressText.setVisibility(View.GONE);
             list.setVisibility(View.VISIBLE);
         }
     }
@@ -294,6 +296,7 @@ public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
     @Override
     public void onTaskCompleted() {
         progressBar.setVisibility(View.GONE);
+        progressText.setVisibility(View.GONE);
 
         ItemsAdapter listAdapter = new ItemsAdapter(listData(), tableName());
         list.setAdapter(listAdapter);
@@ -354,15 +357,24 @@ public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
     }
 
     private void switchListData() {
-        ItemsAdapter listAdapter = new ItemsAdapter(listData(), tableName());
-        list.setAdapter(listAdapter);
-        listAdapter.setOnItemClickListener(new ItemsAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View itemView, int position) {
-                showDialog(itemView);
-            }
-        });
-        list.setLayoutManager(new LinearLayoutManager(this));
+        Cursor itemsCursor = listData();
+        Log.d(MainActivity.class.getSimpleName(), "Count: "+itemsCursor.getCount());
+        if (itemsCursor.getCount() == 0) {
+            list.setVisibility(View.GONE);
+            notFoundText.setVisibility(View.VISIBLE);
+        } else {
+            list.setVisibility(View.VISIBLE);
+            notFoundText.setVisibility(View.GONE);
+            ItemsAdapter listAdapter = new ItemsAdapter(itemsCursor, tableName());
+            list.setAdapter(listAdapter);
+            listAdapter.setOnItemClickListener(new ItemsAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View itemView, int position) {
+                    showDialog(itemView);
+                }
+            });
+            list.setLayoutManager(new LinearLayoutManager(this));
+        }
     }
 
     public void hideKeyboard(Activity activity) {

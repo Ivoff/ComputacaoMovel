@@ -62,8 +62,6 @@ public class QualisRequest extends AsyncTask<String, Integer, Object> {
 
             int total = conferencias_data.length() + periodicos_data.length() + outrasAreas_data.length();
 
-//            database.execSQL(String.format("INSERT INTO %s (%s) VALUES (%d);", DbSchemaContract.Meta.TABLE_NAME, DbSchemaContract.Meta.COLUMN_NAME_TOTAL_JSON_ROWS, total));
-
             database.beginTransaction();
 
             for(int i = 0; i < conferencias_data.length(); i += 1) {

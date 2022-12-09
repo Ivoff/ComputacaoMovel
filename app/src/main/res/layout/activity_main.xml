@@ -36,11 +36,6 @@
                 android:inputType="textShortMessage"
                 android:imeOptions="actionSearch"
             />
-<!--            <ImageView-->
-<!--                android:layout_height="25dp"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:src="@drawable/clear_search_bar"-->
-<!--            />-->
         </FrameLayout>
     </androidx.appcompat.widget.Toolbar>
 
@@ -110,7 +105,6 @@
                 android:background="@drawable/btn_filter"
                 android:layout_marginTop="10dp"
                 android:layout_weight="0.65"
-                android:textSize="5sp"
                 android:overlapAnchor="false"
                 android:drawSelectorOnTop="false"
             />
@@ -124,6 +118,18 @@
         android:orientation="vertical"
         android:background="@color/mid_light"
     >
+
+        <TextView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/not_found_text"
+            android:text="Nada encontrado..."
+            android:textSize="25sp"
+            android:textColor="@color/dark"
+            android:visibility="gone"
+            android:gravity="center"
+            android:textStyle="bold"
+        />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
@@ -161,7 +167,6 @@
                 android:textStyle="bold"
             />
         </androidx.appcompat.widget.LinearLayoutCompat>
-
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
