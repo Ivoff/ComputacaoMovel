@@ -8,6 +8,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import com.example.computacaomovel.DialogFragment;
+
+import androidx.core.splashscreen.SplashScreen;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +25,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
@@ -68,9 +71,14 @@ public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
     private TextView notFoundText;
     private String searchText = "";
 
+    private SplashScreen splashScreen;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        splashScreen = SplashScreen.installSplashScreen(this);
+
         setContentView(R.layout.activity_main);
 
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -280,10 +288,6 @@ public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
         resultPeriodicos.moveToNext();
         resultOutrasAreas.moveToNext();
 
-        Log.d(MainActivity.class.getSimpleName(), "Conferencia: "+resultConferencias.getInt(0));
-        Log.d(MainActivity.class.getSimpleName(), "Periodico: "+resultPeriodicos.getInt(0));
-        Log.d(MainActivity.class.getSimpleName(), "OutrasAreas: "+resultOutrasAreas.getInt(0));
-
         return resultConferencias.getInt(0) > 0 || resultPeriodicos.getInt(0) > 0 || resultOutrasAreas.getInt(0) > 0;
     }
 
@@ -358,7 +362,6 @@ public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
 
     private void switchListData() {
         Cursor itemsCursor = listData();
-        Log.d(MainActivity.class.getSimpleName(), "Count: "+itemsCursor.getCount());
         if (itemsCursor.getCount() == 0) {
             list.setVisibility(View.GONE);
             notFoundText.setVisibility(View.VISIBLE);
