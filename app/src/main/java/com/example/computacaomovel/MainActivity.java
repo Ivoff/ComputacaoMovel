@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
 
     private SplashScreen splashScreen;
 
+    private Cursor itemsCursor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -361,7 +363,9 @@ public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
     }
 
     private void switchListData() {
-        Cursor itemsCursor = listData();
+        if (itemsCursor != null && !itemsCursor.isClosed())
+            itemsCursor.close();
+        itemsCursor = listData();
         if (itemsCursor.getCount() == 0) {
             list.setVisibility(View.GONE);
             notFoundText.setVisibility(View.VISIBLE);

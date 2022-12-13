@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:background="@color/mid_light"
         android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     >
